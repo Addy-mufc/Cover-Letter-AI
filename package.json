@@ -7,7 +7,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "dev": "next dev",
-    "build": "react-scripts build",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
