@@ -5,7 +5,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export default async function (req, res) {
+export default async function Generate(req, res) {
   const resume = req.body.animal || '';
   if (resume.trim().length === 0) {
     res.status(400).json({
@@ -20,8 +20,8 @@ export default async function (req, res) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(resume),
-      max_tokens: 1000,
-      temperature: 0.6,
+      max_tokens: 2000,
+      temperature: 0.7,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
     //console.log(completion.data.choices[0].text)
@@ -45,6 +45,6 @@ function generatePrompt(resume) {
   return `Here is my resume.
 
  ${resume}
-Write a cover letter for me that starts with Dear Manager,`;
+Write a cover letter for me in Harvard format in three hundred and fifty words`;
 }
 
